@@ -6,12 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-first_user = User.new(name: 'Billy')
-# , email: 'first@email.com', :password => '123456', :password_confirmation => '123456')
+first_user = User.new(name: 'Billy', email: 'first@email.com', :password => '123456', :password_confirmation => '123456')
 # first_user.skip_confirmation!
 first_user.save!
-second_user = User.new(name: 'Bob')
-# , email: 'second@email.com', :password => '123456', :password_confirmation => '123456')
+second_user = User.new(name: 'Bob', email: 'second@email.com', :password => '123456', :password_confirmation => '123456')
 # second_user.skip_confirmation!
 second_user.save!
 
