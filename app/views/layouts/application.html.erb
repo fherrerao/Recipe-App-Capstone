@@ -24,11 +24,16 @@
             <%= link_to "Home", root_path, :class => current_class?(root_path) %>
           </li>
           <li class="nav-item">
-          <%= link_to "Foods", foods_path, :class => current_class?(foods_path) %>
+            <%= link_to "Foods", foods_path, :class => current_class?(foods_path) %>
           </li>
           <li class="nav-item">
-          <%= link_to "Recipes", recipes_path, :class => current_class?(recipes_path) %>
+            <%= link_to "Recipes", recipes_path, :class => current_class?(recipes_path) %>
           </li>
+          <% if signed_in? %>
+            <li class="nav-item d-flex align-items-center">
+              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ',method: :delete  %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
