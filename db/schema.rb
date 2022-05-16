@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_173028) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id", null: false
-    t.index ["users_id"], name: "index_foods_on_users_id"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
   create_table "recipe_foods", force: :cascade do |t|
@@ -29,8 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_173028) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "recipes_id", null: false
-    t.bigint "foods_id", null: false
-    t.index ["foods_id"], name: "index_recipe_foods_on_foods_id"
+    t.bigint "food_id", null: false
+    t.index ["food_id"], name: "index_recipe_foods_on_food_id"
     t.index ["recipes_id"], name: "index_recipe_foods_on_recipes_id"
   end
 
@@ -42,8 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_173028) do
     t.boolean "public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id", null: false
-    t.index ["users_id"], name: "index_recipes_on_users_id"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,8 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_173028) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "foods", "users", column: "users_id"
-  add_foreign_key "recipe_foods", "foods", column: "foods_id"
+  add_foreign_key "foods", "users"
+  add_foreign_key "recipe_foods", "foods"
   add_foreign_key "recipe_foods", "recipes", column: "recipes_id"
-  add_foreign_key "recipes", "users", column: "users_id"
+  add_foreign_key "recipes", "users"
 end
