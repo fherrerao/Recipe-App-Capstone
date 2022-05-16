@@ -6,6 +6,10 @@ class User < ApplicationRecord
   has_many :recipes
   has_many :foods
 
-  validates :name, uniqueness: { case_sensitive: false }, 
-  presence: true, allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
+  validates :name, uniqueness: { case_sensitive: false },
+                   presence: true, allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
+
+  def admin?
+    role == 'admin'
+  end
 end
