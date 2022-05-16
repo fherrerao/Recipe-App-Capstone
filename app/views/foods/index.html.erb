@@ -1,0 +1,16 @@
+<h1>Foods Index</h1>
+
+<div id="foods">
+  <% @foods.each do |food| %>
+    <%= render food %>
+    <% if can? :destroy, food %> 
+    <%= button_to "Delete food", food_path(food.id), 
+      class:"btn btn-outline-danger float-right m-2 mr-5", method: :delete %> 
+    <% end %> 
+    <p>
+      <%= link_to "Show this food", food %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New food", new_food_path %>
