@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
-  def index; end
+  def index 
+    @recipes = Recipe.all
+  end
 
   def show; end
 end
