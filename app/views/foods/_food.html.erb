@@ -1,4 +1,11 @@
-<div id="<%= dom_id food %>">
-  <%= food.name %>
-  <%= food.price %>
-</div>
+<tr id="<%= dom_id food%>">
+    <th scope="row"><%= food.name%></th>
+    <td><%= food.measurement_unit%></td>
+    <td><%= food.price%></td>
+    <td>
+      <% if can? :destroy, food %>
+      <%= button_to "Delete food", food_path(food.id),
+        class:"btn btn-outline-danger float-right m-2 mr-5", method: :delete %>
+      <% end %>
+    </td>    
+</tr>

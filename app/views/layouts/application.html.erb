@@ -10,10 +10,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body class="container">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#"><%= current_user.name%></a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
           </li>
           <% if signed_in? %>
             <li class="nav-item d-flex align-items-center">
-              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ',method: :delete  %>
+              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ',method: :delete  %>              
             </li>
           <% end %>
         </ul>
