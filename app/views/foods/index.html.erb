@@ -1,6 +1,9 @@
 <div>
   <h1 class="text-center">Foods</h1>
-  <%= link_to "New food", new_food_path, class: 'btn btn-outline-primary'%>
+  <hr>
+  <div class="d-flex justify-content-end">
+    <%= link_to "New food", new_food_path, class: 'btn btn-outline-primary'%>
+  </div>
   <div id="foods">
     <table class="table table-striped">
       <thead>
@@ -10,12 +13,10 @@
           <th scope="col">Unit price</th>
           <th scope="col">Actions</th>
         </tr>
-      </thead>
-      <tbody>
+      </thead>      
         <% @foods.each do |food| %>
           <%= render food %>  
-        <% end %>
-      </tbody>
+        <% end %>      
     </table>
   </div>
 </div>
