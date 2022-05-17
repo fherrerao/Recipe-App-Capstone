@@ -19,4 +19,10 @@ third_food = Food.create!(name: 'Oil', measurement_unit: 'millilitters', price: 
 
 fourth_food = Food.create!(name: 'Spaghetti', measurement_unit: 'grams', price: 2.3, user: second_user)
 fifth_food = Food.create!(name: 'Tomato', measurement_unit: 'grams', price: 1.1, user: second_user)
-sixth_food = Food.create!(name: 'Salt', measurement_unit: 'grams', price: 4.2, user: second_user)
+sixth_food = Food.create!(name: 'Pesto', measurement_unit: 'grams', price: 4.2, user: second_user)
+
+first_recipe = Recipe.create!(name: 'Gallo Pinto', preparation_time: 4.5, cooking_time: 8, description: 'Traditional costarrican dish', public: true, user: first_user)
+second_recipe = Recipe.create!(name: 'Empanadas', preparation_time: 12, cooking_time: 25, description: 'Traditional latin dish', public: false, user: first_user)
+
+third_recipe = Recipe.create!(name: 'Spaghetti al Pomodoro', preparation_time: 7, cooking_time: 14, description: 'Traditional roman dish', public: true, user: second_user)
+fourth_recipe = Recipe.create!(name: 'Spaghetti al Pesto', preparation_time: 9, cooking_time: 17, description: 'Traditional italian dish', public: false, user: second_user)
