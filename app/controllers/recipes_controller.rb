@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
+  include RecipesHelper
   before_action :set_recipe, only: %i[show edit destroy]
 
   def index
-    @recipes = Recipe.all
+    @recipes = my_recipes
   end
 
   def show; end
