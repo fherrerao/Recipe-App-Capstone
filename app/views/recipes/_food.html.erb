@@ -1,0 +1,13 @@
+<tr id="<%= dom_id recipe_food%>">
+    <th scope="row"><%= food.name%></th>
+    <td><%= recipe_food.quantity%></td>
+    <td>$<%= food.price%></td>
+    <td>
+      <% if can? :manage, @recipe %>
+        <%= button_to "Remove food", recipe_recipe_food_path(recipe_food.recipe_id, food.id),
+          class:"btn btn-outline-danger float-right", method: :delete %>
+        <% else%>
+        <button class="btn disabled">No action</button>
+      <% end %>
+    </td>    
+</tr>
