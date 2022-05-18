@@ -9,8 +9,8 @@
         </tr>
       </thead>
       <tbody>
-      <% if recipe.recipe_foods.any? %>
-        <% recipe.recipe_foods.each do |food| %>
+      <% if recipe.foods.any? %>
+        <% recipe.foods.each do |food| %>
           <%= render "foods/food", food: food %> 
         <% end %>
       <% else %>

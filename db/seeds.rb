@@ -26,3 +26,6 @@ second_recipe = Recipe.create!(name: 'Empanadas', preparation_time: 12, cooking_
 
 third_recipe = Recipe.create!(name: 'Spaghetti al Pomodoro', preparation_time: 7, cooking_time: 14, description: 'Traditional roman dish', public: true, user: second_user)
 fourth_recipe = Recipe.create!(name: 'Spaghetti al Pesto', preparation_time: 9, cooking_time: 17, description: 'Traditional italian dish', public: false, user: second_user)
+
+first_recipe_food = RecipeFood.create!(quantity: 2.1, recipe: first_recipe, food: first_food)
+second_recipe_food = RecipeFood.create!(quantity: 5.1, recipe: first_recipe, food: second_food)

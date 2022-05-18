@@ -50,7 +50,6 @@ class RecipesController < ApplicationController
 
   private
 
-
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end
