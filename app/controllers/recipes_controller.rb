@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   include RecipesHelper
+  load_and_authorize_resource
   before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
