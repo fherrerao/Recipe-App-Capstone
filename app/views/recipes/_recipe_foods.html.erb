@@ -1,4 +1,4 @@
-<div id="recipe-foods">
+<div id="<%= dom_id recipe%>" >
     <table class="table table-striped">
       <thead>
         <tr>
@@ -9,23 +9,13 @@
         </tr>
       </thead>
       <tbody>
-      <tr>
-          <th scope="row">Potato</th>
-          <td>12</td>
-          <td>1.25</td>
-          <td>
-            <% if can? :destroy, @food %>
-              <div>
-                <%= button_to "Modify", food_path(@food.id),
-                  class:"btn btn-outline-danger float-right", method: :put %>
-                  <%= button_to "Remove", food_path(@food.id),
-                  class:"btn btn-outline-danger float-right", method: :delete %>
-              </div>
-              <% else%>
-              <button class="btn disabled">No action</button>
-            <% end %>
-          </td>    
-      </tr>
+      <% if recipe.recipe_foods.any? %>
+        <% recipe.recipe_foods.each do |recipe_food| %>
+          <%= render partial: "recipes/food", locals: {:food => Food.find(recipe_food.food_id), :recipe_food => recipe_food} %> 
+        <% end %>
+      <% else %>
+        <h4>No foods have been added yet to this recipe.</h4>
+      <% end %>
       </tbody>             
     </table>
   </div>
