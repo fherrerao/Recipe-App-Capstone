@@ -1,13 +1,13 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :destroy]
+  before_action :set_recipe, only: %i[show edit destroy]
 
-  def index 
+  def index
     @recipes = Recipe.all
   end
 
   def show; end
 
-  def new 
+  def new
     @recipe = Recipe.new
   end
 
