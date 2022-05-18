@@ -1,0 +1,12 @@
+<div class="page-title d-flex align-items-center">
+  <h1>Recipes Show</h1>
+  <%= link_to "Create Recipe", new_recipe_path, class: 'btn btn-outline-primary ms-4' %>
+</div>
+<hr>
+
+<%= render @recipe %>
+
+<div>
+  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+  <%= link_to "Back to recipes", recipes_path %>
+</div>
