@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   include RecipesHelper
-  before_action :set_recipe, only: %i[show edit destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
 
   def index
     @recipes = my_recipes
@@ -29,14 +29,27 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @recipe.update(recipe_params)
+        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: @recipe }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def destroy
     @recipe.destroy
 
-    flash[:success] = 'Post has been deleted successfully'
+    flash[:success] = 'Recipe has been deleted successfully'
     redirect_to recipes_url
   end
 
   private
+
 
   def set_recipe
     @recipe = Recipe.find(params[:id])
