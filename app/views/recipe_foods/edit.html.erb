@@ -1,0 +1,37 @@
+<h1>Edit Recipe Food</h1>
+
+<h2>You are editing <%= @recipe.name %></h2>
+
+<%= form_with model: @recipe_food, url: recipe_recipe_food_path(@recipe, @recipe_food), method: :put, scope: @recipe_food, html: { class: 'recipe-food-form-edit' } do |form| %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Food</th> <th scope="col">Quantity</th> <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr id="<%= dom_id @recipe_food%>">
+        <th scope="row"><%= @food.name%></th>
+        <td>
+          <div class="field">
+            <%= form.text_field :quantity, placeholder: "Enter a quantity", class: 'form-control' %>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <%= form.text_field @food.price, placeholder: "Enter a price", class: 'form-control', value: @food.price %>
+          </div>
+        </td>
+      </tr>
+    </tbody>             
+  </table>
+  <br>
+  <div class="actions">
+    <%= form.submit "Update Recipe Food" %>
+  </div>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Go back", :back %>
+</div>
