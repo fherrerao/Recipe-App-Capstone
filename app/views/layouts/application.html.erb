@@ -19,7 +19,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav container-fluid">
           <li class="nav-item">
             <%= link_to "Home", root_path, :class => current_class?(root_path) %>
           </li>
@@ -30,8 +30,11 @@
             <%= link_to "Recipes", recipes_path, :class => current_class?(recipes_path) %>
           </li>
           <% if signed_in? %>
+            <li class="nav-item ms-lg-auto">
+              <%= link_to "Edit User", edit_user_registration_path, class: 'nav-link' %>              
+            </li>
             <li class="nav-item d-flex align-items-center">
-              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ',method: :delete  %>              
+              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ', method: :delete  %>              
             </li>
           <% end %>
         </ul>
