@@ -1,10 +1,31 @@
 <div class="page-title d-flex align-items-center">
   <h1>Recipes Show</h1>
-  <%= link_to "Create Recipe", new_recipe_path, class: 'btn btn-outline-primary ms-4' %>
 </div>
 <hr>
 
-<%= render @recipe %>
+<div class="recipe-details position-relative">
+  <h2><%= @recipe.name %></h2>
+  <h4>Preparation Time: <%= @recipe.preparation_time %> minutes</h4>
+  <h4>Cooking Time: <%= @recipe.cooking_time %> minutes</h4>
+  <h4>Steps: </h4>
+  <p><%= @recipe.description %></p>
+  <%= form_with model: @recipe, url: recipe_path, method: :put, scope: @recipe, 
+  html: { class: 'recipe-form-details position-absolute top-0 end-0' } do |f| %>
+    <div class="field form-switch ps-0">
+      <%= f.label "Public:", for: 'public-switch-check' %>
+      <%= f.check_box :public, class: 'form-check-input ms-2', id: 'public-switch-check' %>
+    </div>
+    <%= f.submit "Set this public state" %>
+  <% end %>
+</div>
+
+<div class="action-buttons w-100 d-flex justify-content-between">
+  <%= button_to "Generate Shopping List **notready", root_path %>
+  <%= button_to "Add ingredient **notready", root_path %>
+</div>
+<hr>
+
+<%= render "recipe_foods", recipe: @recipe %>
 
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
