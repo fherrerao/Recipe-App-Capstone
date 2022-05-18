@@ -1,16 +1,22 @@
-<h1>Foods Index</h1>
-
-<div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <% if can? :destroy, food %> 
-    <%= button_to "Delete food", food_path(food.id), 
-      class:"btn btn-outline-danger float-right m-2 mr-5", method: :delete %> 
-    <% end %> 
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
-  <% end %>
+<div>
+  <h1 class="text-center">Foods</h1>
+  <hr>
+  <div class="d-flex justify-content-end">
+    <%= link_to "New food", new_food_path, class: 'btn btn-outline-primary'%>
+  </div>
+  <div id="foods">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Measurement unit</th>
+          <th scope="col">Unit price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>      
+        <% @foods.each do |food| %>
+          <%= render food %>  
+        <% end %>      
+    </table>
+  </div>
 </div>
-
-<%= link_to "New food", new_food_path %>
