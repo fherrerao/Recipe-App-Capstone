@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
 
   def show_public
     @page_title = 'Public Recipes Index'
-    @recipes = Recipe.all.where(public: true).order("created_at DESC")
+    @recipes = Recipe.all.where(public: true).order('created_at DESC')
   end
 
   def new
