@@ -24,9 +24,11 @@ class FoodsController < ApplicationController
     @food.user = current_user
     respond_to do |format|
       if @food.save
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
+        flash[:success] = 'Food has been created successfully'
+        format.html { redirect_to food_url(@food) }
         format.json { render :show, status: :created, location: @food }
       else
+        flash[:error] = 'Error: Food could not be created'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @food.errors, status: :unprocessable_entity }
       end
@@ -37,9 +39,11 @@ class FoodsController < ApplicationController
   def update
     respond_to do |format|
       if @food.update(food_params)
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully updated.' }
+        flash[:success] = 'Food has been updated successfully'
+        format.html { redirect_to food_url(@food) }
         format.json { render :show, status: :ok, location: @food }
       else
+        flash[:error] = 'Error: Food could not be updated'
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @food.errors, status: :unprocessable_entity }
       end
@@ -50,7 +54,7 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.update(recipe_food_params)
         flash[:success] = 'Recipe food has been updated successfully'
-        format.html { redirect_to recipe_url(params[:recipe]), notice: 'Food was successfully updated.' }
+        format.html { redirect_to recipe_url(params[:recipe]) }
       else
         flash[:error] = 'Error: Recipe food could not be updated'
         format.html { render :edit, status: :unprocessable_entity }
@@ -63,7 +67,8 @@ class FoodsController < ApplicationController
     @food.destroy
 
     respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+      flash[:success] = 'Food has been destroyed successfully'
+      format.html { redirect_to foods_url }
       format.json { head :no_content }
     end
   end

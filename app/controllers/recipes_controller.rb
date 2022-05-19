@@ -34,9 +34,11 @@ class RecipesController < ApplicationController
         @recipe_food.recipe = @recipe
         @recipe_food.food = @food
         @recipe_food.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Food was successfully added to recipe.' }
+        flash[:success] = 'Food was successfully added to recipe.'
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :created, location: @food }
       else
+        flash[:error] = 'Error: Food could not be added to recipe.'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @food.errors, status: :unprocessable_entity }
       end
@@ -50,7 +52,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         flash[:success] = 'Recipe saved succesfully'
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :created, location: @recipe }
       else
         flash[:error] = 'Error: Recipe could not be saved'
@@ -63,9 +65,11 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe\'s public state was successfully updated." }
+        flash[:success] = 'Recipe has been updated successfully'
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        flash[:error] = 'Error: Recipe could not be updated'
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end

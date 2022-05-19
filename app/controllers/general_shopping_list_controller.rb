@@ -14,6 +14,7 @@ class GeneralShoppingListController < ActionController::Base
 
   def update
     add_shopping
+    flash[:success] = 'Shopping list has been updated successfully'
     redirect_to general_shopping_list_index_path
   end
 end
