@@ -4,7 +4,7 @@
     <td>$<%= food.price%></td>
     <td>
       <% if can? :manage, @recipe %>
-        <%= button_to "Remove food", recipe_recipe_food_path(recipe_food.recipe_id, food.id),
+        <%= button_to "Remove food", recipe_recipe_food_path(recipe_food.recipe_id, recipe_food.id),
           class:"btn btn-outline-danger", method: :delete %>
         <%= link_to 'Edit ingredient', edit_recipe_recipe_food_path(recipe_food.recipe_id, food.id),
         class:"btn btn-outline-warning" %>
