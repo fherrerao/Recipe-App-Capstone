@@ -17,6 +17,7 @@ module GeneralShoppingListHelper
       not_repeated = find_not_repeated_ingredients(recipe_ingredients)
       @@shopping.push(*not_repeated)
     else
+      # aqui no es
       @@shopping.push(*recipe_ingredients)
     end
   end
@@ -26,9 +27,12 @@ module GeneralShoppingListHelper
 
   def find_not_repeated_ingredients(recipe_ingredients)
     not_repeated = []
-    @@shopping.each do |ingredient|
-      single = recipe_ingredients.reject { |food| ingredient.food_id == food.food_id }
-      not_repeated.push(*single) unless not_repeated.include? single
+    recipe_ingredients.each do |food|
+      temp = []
+      @@shopping.each do |ingredient|
+        temp.push(food) if ingredient.food_id == food.food_id
+      end
+      not_repeated.push(food) if temp.empty?
     end
     not_repeated
   end
@@ -36,8 +40,10 @@ module GeneralShoppingListHelper
   def find_repeated_ingredients(recipe_ingredients)
     repeated = []
     recipe_ingredients.each do |food|
-      single = @@shopping.select { |ingredient| ingredient.food_id == food.food_id }
-      repeated.push(*single) unless repeated.include? single
+      array = @@shopping.select { |ingredient| ingredient.food_id == food.food_id }
+      array.each do |element|
+        repeated.push(element) unless repeated.include? element
+      end
     end
     repeated
   end
