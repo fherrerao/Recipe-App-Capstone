@@ -21,8 +21,10 @@
 
 <div class="action-buttons w-100 d-flex justify-content-between">
   <%= button_to "Generate Shopping List **notready", root_path %>
-  <%= link_to "Add ingredient",  new_recipe_recipe_food_path(@recipe), 
-    class: 'btn btn-secondary' %>
+  <% if can? :manage, @recipe %>
+    <%= link_to "Add ingredient",  new_recipe_recipe_food_path(@recipe), 
+      class: 'btn btn-secondary' %>
+  <% end %>
   
 </div>
 <hr>
