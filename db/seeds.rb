@@ -29,3 +29,5 @@ fourth_recipe = Recipe.create!(name: 'Spaghetti al Pesto', preparation_time: 9, 
 
 first_recipe_food = RecipeFood.create!(quantity: 2.1, recipe: first_recipe, food: first_food)
 second_recipe_food = RecipeFood.create!(quantity: 5.1, recipe: first_recipe, food: second_food)
+
+third_recipe_food = RecipeFood.create!(quantity: 5.1, recipe: second_recipe, food: second_food)
