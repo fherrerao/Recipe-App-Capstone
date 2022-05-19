@@ -1,0 +1,24 @@
+<div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Food</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>      
+          </tr>
+        </thead>
+        <tbody>
+            <% @ingredients.each do |shop|%>
+              <tr>
+                <td><%= Food.find(shop.food_id).name%></td>                
+                <th scope="row"><%= shop.quantity%></th>
+                <td><%= Food.find(shop.food_id).price %></td>                
+              </tr>
+            <%end%>
+            <span>Amount of food items to buy: <%= @ingredients.length%></span>
+            <span>Total value of food needed: <%= @total_value%> </span>
+        </tbody>     
+      </table>
+    </div>
+  </div>
+</div>
