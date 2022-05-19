@@ -25,12 +25,15 @@
     <%= f.submit "Generate Shopping List" %>
   <% end %>
 
-    <%
-=begin%>
- <%= button_to "Generate Shopping List", general_shopping_list_path(current_user.id, :recipe => @recipe.id), method: :put %> 
-<%
-=end%>
-    <%= button_to "Add ingredient", root_path %>
+  <%=begin%>
+    <%= button_to "Generate Shopping List", general_shopping_list_path(current_user.id, :recipe => @recipe.id), method: :put %> 
+  <%=end%>
+                             
+  <% if can? :manage, @recipe %>
+    <%= link_to "Add ingredient",  new_recipe_recipe_food_path(@recipe), 
+      class: 'btn btn-secondary' %>
+  <% end %>
+
 </div>
 <hr>
 
