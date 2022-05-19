@@ -15,7 +15,9 @@
       <%= f.label "Public:", for: 'public-switch-check' %>
       <%= f.check_box :public, class: 'form-check-input ms-2', id: 'public-switch-check' %>
     </div>
-    <%= f.submit "Set this public state" %>
+    <% if can? :manage, @recipe %>
+      <%= f.submit "Set this public state" %>
+      <% end %>
   <% end %>
 </div>
 
