@@ -32,6 +32,9 @@
           <li class="nav-item">
             <%= link_to "Public Recipes", public_recipes_path, :class => current_class?(public_recipes_path) %>
           </li>
+          <li class="nav-item">
+            <%= link_to "Shopping List", general_shopping_list_index_path, :class => current_class?(general_shopping_list_index_path) %>
+          </li>
           <% if signed_in? %>
             <li class="nav-item ms-lg-auto">
               <%= link_to "Edit User", edit_user_registration_path, class: 'nav-link' %>              
