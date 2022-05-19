@@ -1,4 +1,5 @@
 class RecipeFoodsController < ApplicationController
+  before_action :set_recipe, only: %i[new create show edit update destroy]
   before_action :set_recipe_food, only: %i[show edit update destroy]
   load_and_authorize_resource
 
@@ -18,7 +19,22 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
-  def create; end
+  def create
+    @recipe_food = RecipeFood.new(ingredient_params)
+    @recipe_food.recipe = @recipe
+    @recipe_food.food = Food.find(params[:food_id])
+    respond_to do |format|
+      if @recipe_food.save
+        flash[:success] = 'Ingredient saved succesfully'
+        format.html { redirect_to recipe_url(@recipe), notice: 'Ingredient was successfully added.' }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        flash[:error] = 'Error: Recipe could not be saved'
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def destroy
     @recipe_food.destroy
@@ -33,8 +49,16 @@ class RecipeFoodsController < ApplicationController
     params.require(:recipe_food).permit(:quantity, :value)
   end
 
-  def set_recipe_food
+  def set_recipe
     @recipe = Recipe.find(params[:recipe_id])
+    @foods = current_user.foods
+  end
+  
+  def set_recipe_food
     @recipe_food = RecipeFood.find(params[:id])
+  end
+
+  def ingredient_params
+    params.require(:recipe_food).permit(:quantity)
   end
 end

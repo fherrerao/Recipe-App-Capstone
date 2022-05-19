@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   include RecipesHelper
   load_and_authorize_resource
   before_action :set_recipe, only: %i[show edit edit_two update destroy]
-  before_action :set_quantity, only: :update_two
+  before_action :set_other_recipe, only: :update_two
 
   def index
     @recipes = my_recipes
@@ -91,8 +91,7 @@ class RecipesController < ApplicationController
     params.require(:recipe_food).permit(:quantity)
   end
 
-  def set_quantity
+  def set_other_recipe
     @recipe = Recipe.find(params[:recipe_id])
-    @food_quantity = params[:quantity].to_i
   end
 end
