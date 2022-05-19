@@ -8,4 +8,8 @@ class Recipe < ApplicationRecord
 
     "#{description[0, 100]}..."
   end
+
+  def steps
+    description.split("\n")
+  end
 end
