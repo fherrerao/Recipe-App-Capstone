@@ -1,5 +1,8 @@
 class GeneralShoppingListController < ActionController::Base
   include GeneralShoppingListHelper
+
+  layout 'application'
+  
   def index    
     @ingredients=getShopping
     @total_value = 0
