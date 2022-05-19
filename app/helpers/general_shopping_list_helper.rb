@@ -1,11 +1,10 @@
 module GeneralShoppingListHelper
-  @@shopping = [] 
-  def getShopping
+  @@shopping = []
+  def getting_shopping
     @@shopping
   end
 
-  def addShopping    
-    # if Recipe.find(params[:recipe]).recipe_foods
-    @@shopping.push(*Recipe.find(params[:recipe]).recipe_foods)    
+  def add_shopping    
+    @@shopping.push(*Recipe.find(params[:recipe]).recipe_foods)
   end
 end
