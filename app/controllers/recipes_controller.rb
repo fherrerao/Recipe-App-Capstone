@@ -5,10 +5,16 @@ class RecipesController < ApplicationController
   before_action :set_other_recipe, only: :update_two
 
   def index
+    @page_title = 'Recipes Index'
     @recipes = my_recipes
   end
 
   def show; end
+
+  def show_public
+    @page_title = 'Public Recipes Index'
+    @recipes = Recipe.all.where(public: true).order('created_at DESC')
+  end
 
   def new
     @recipe = Recipe.new

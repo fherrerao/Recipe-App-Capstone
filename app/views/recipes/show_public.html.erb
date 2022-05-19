@@ -6,6 +6,6 @@
 
 <div id="recipes-list d-flex flex-column">
   <% @recipes.each do |recipe| %>
-    <%= render recipe %>
+    <%= render 'public_recipe', recipe: recipe %>
   <% end %>
 </div>
