@@ -46,7 +46,6 @@ class FoodsController < ApplicationController
     end
   end
 
-   
   def update_two
     respond_to do |format|
       if @food.update(recipe_food_params)

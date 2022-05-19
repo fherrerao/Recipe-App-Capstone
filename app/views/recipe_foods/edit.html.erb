@@ -3,24 +3,24 @@
 <h2>You are editing <%= @recipe.name %></h2>
 
 <div class="recipe-food-update-forms container-fluid d-flex">
-<%= form_with model: @recipe_food, url: recipe_recipe_food_path(@recipe, @recipe_food), method: :put, scope: @recipe_food, html: { class: 'recipe-food-form-edit' } do |form| %>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Food</th> <th scope="col">Quantity <em>(<%= @food.measurement_unit %>)</em></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="<%= dom_id @recipe_food%>">
-        <th scope="row"><%= @food.name%></th>
-        <td>
-          <div class="field">
-            <%= form.text_field :quantity, placeholder: "Enter a quantity", class: 'form-control' %>
-          </div>
-        </td>
-      </tr>
-    </tbody>             
-  </table>
+  <%= form_with model: @recipe_food, url: recipe_recipe_food_path(@recipe, @recipe_food), method: :put, scope: @recipe_food, html: { class: 'recipe-food-form-edit' } do |form| %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Food</th> <th scope="col">Quantity <em>(<%= @food.measurement_unit %>)</em></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="<%= dom_id @recipe_food%>">
+          <th scope="row"><%= @food.name%></th>
+          <td>
+            <div class="field">
+              <%= form.text_field :quantity, placeholder: "Enter a quantity", class: 'form-control' %>
+            </div>
+          </td>
+        </tr>
+      </tbody>             
+    </table>
     <br>
     <div class="actions">
       <%= form.submit "Update Quantity" %>
@@ -35,19 +35,19 @@
       </thead>
       <tbody>
         <tr id="<%= dom_id @food%>">
-        <td>
-          <div class="field">
-            <%= form.text_field :price, placeholder: "Enter a price", class: 'form-control' %>
-          </div>
-        </td>
-      </tr>
-    </tbody>             
-  </table>
-  <br>
-  <div class="actions">
-    <%= form.submit "Update Value" %>
-  </div>
-<% end %>
+          <td>
+            <div class="field">
+              <%= form.text_field :price, placeholder: "Enter a price", class: 'form-control' %>
+            </div>
+          </td>
+        </tr>
+      </tbody>             
+    </table>
+    <br>
+    <div class="actions">
+      <%= form.submit "Update Value" %>
+    </div>
+  <% end %>
 </div>
 <br>
 
