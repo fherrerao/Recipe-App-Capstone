@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     resources :recipe_foods do
     end
   end
-
+  get 'recipes/:id/ingredient/new', as: 'recipes_new_ingredient', action: :edit_two, controller: :recipes
+  post 'recipes/:recipe_id/ingredients', as: 'recipes_create_ingredient', action: :update_two, controller: :recipes
 
   root "foods#index"
 end
