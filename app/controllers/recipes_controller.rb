@@ -28,7 +28,7 @@ class RecipesController < ApplicationController
         @recipe_food.recipe = @recipe
         @recipe_food.food = @food
         @recipe_food.save
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
+        format.html { redirect_to recipe_url(@recipe), notice: 'Food was successfully added to recipe.' }
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new, status: :unprocessable_entity }
