@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :set_food, only: %i[show edit update destroy]
+  before_action :set_food, only: %i[show edit update update_two destroy]
   load_and_authorize_resource
 
   # GET /foods or /foods.json
@@ -46,6 +46,19 @@ class FoodsController < ApplicationController
     end
   end
 
+   
+  def update_two
+    respond_to do |format|
+      if @food.update(recipe_food_params)
+        flash[:success] = 'Recipe food has been updated successfully'
+        format.html { redirect_to recipe_url(params[:recipe]), notice: 'Food was successfully updated.' }
+      else
+        flash[:error] = 'Error: Recipe food could not be updated'
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # DELETE /foods/1 or /foods/1.json
   def destroy
     @food.destroy
@@ -66,5 +79,9 @@ class FoodsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def food_params
     params.fetch(:food, {}).permit(:name, :measurement_unit, :price)
+  end
+
+  def recipe_food_params
+    params.require(:food).permit(:quantity, :price)
   end
 end
