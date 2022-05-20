@@ -48,7 +48,7 @@
   <br>
   <br>
   <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: "#{name} generic-alert" %>
+    <%= content_tag :div, msg, class: "alert alert-#{name}" %>
   <% end -%>
   <% if user_signed_in? %>
     <div class="position-absolute top-10 end-0">
