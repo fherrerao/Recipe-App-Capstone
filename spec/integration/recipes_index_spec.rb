@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Shopping list', type: :system do
-  describe 'Show food in the shopping list' do
+RSpec.describe 'Recipes index', type: :system do
+  describe 'Show recipes' do
     before :each do
       User.destroy_all
       Food.destroy_all
       Recipe.destroy_all
-      RecipeFood.destroy_all
+
       @user = User.new(name: 'Billy', email: 'first@email.com', password: '123456',
                        password_confirmation: '123456')
       @user.skip_confirmation!
@@ -21,21 +21,32 @@ RSpec.describe 'Shopping list', type: :system do
       @recipe = Recipe.create!(name: 'Gallo Pinto', preparation_time: 4.5, cooking_time: 8,
                                description: 'Traditional costarrican dish', public: true, user: @user)
       @recipe.save
-      @recipe_food = RecipeFood.create!(quantity: 2.1, recipe: @recipe, food: @food)
-      @recipe_food.save
+      visit recipes_path
     end
 
-    it 'Display shoppong list page' do
-      visit general_shopping_list_index_path
-      expect(page).to have_content('Shopping List')
+    it 'should display recipes index page' do
+      expect(page).to have_content('Recipes Index')
     end
 
-    it 'should display the amount of items' do
-      click_link 'My Recipes'
-      click_on @recipe.name
-      click_button 'Generate Shopping List'
-      expect(page).to have_content('Amount of food items to buy: 1')
-      expect(page).to have_content('Total value of food needed: $2.52')
+    it 'should display the name of the recipe' do
+      expect(page).to have_content('Gallo Pinto')
+    end
+
+    it 'should display the description of the recipe' do
+      expect(page).to have_content('Traditional costarrican dish')
+    end
+
+    it 'should find a create recipe button' do
+      expect(page).to have_link('Create Recipe')
+    end
+
+    it 'should find a create recipe button' do
+      expect(page).to have_button('Delete recipe')
+    end
+
+    it 'should remove a recipe' do
+      click_button 'Delete recipe'
+      expect(page).to have_content('Recipe has been deleted successfully')
     end
   end
 end
