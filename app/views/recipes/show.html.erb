@@ -26,7 +26,7 @@
 <div class="action-buttons w-100 d-flex justify-content-between">
   
   <%= form_with url: general_shopping_list_path(current_user.id, :recipe => @recipe.id), method: :put do |f| %>
-    <%= f.submit "Generate Shopping List" %>
+    <%= f.submit "Generate Shopping List", class: 'btn btn-primary' %>
   <% end %>
                       
   <% if can? :manage, @recipe %>
