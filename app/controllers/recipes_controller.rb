@@ -89,7 +89,7 @@ class RecipesController < ApplicationController
   def set_recipe
     @recipe = Recipe.includes(:recipe_foods, recipe_foods: :food).find(params[:id])
   end
-  
+
   def set_recipe_two
     @recipe = Recipe.find(params[:id])
   end
