@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   include RecipesHelper
   load_and_authorize_resource
-  before_action :set_recipe, only: %i[show edit edit_two update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe_two, only: %i[edit_two]
   before_action :set_other_recipe, only: :update_two
 
   def index
@@ -87,6 +88,10 @@ class RecipesController < ApplicationController
 
   def set_recipe
     @recipe = Recipe.includes(:recipe_foods, recipe_foods: :food).find(params[:id])
+  end
+  
+  def set_recipe_two
+    @recipe = Recipe.find(params[:id])
   end
 
   def recipe_params
