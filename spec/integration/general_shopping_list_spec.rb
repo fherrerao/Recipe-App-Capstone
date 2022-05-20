@@ -31,7 +31,7 @@ RSpec.describe 'Shopping list', type: :system do
     end
 
     it 'should display the amount of items' do
-      click_link 'Recipes'
+      click_link 'My Recipes'
       click_on @recipe.name
       click_button 'Generate Shopping List'
       expect(page).to have_content('Amount of food items to buy: 1')
