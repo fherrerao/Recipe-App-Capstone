@@ -16,7 +16,7 @@ RSpec.describe 'Food', type: :system do
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 
-  describe 'Foods' do
+  describe 'show list of foods' do
     before:each do 
       visit new_user_session_path     
       fill_in 'Email', with: 'first@email.com'
