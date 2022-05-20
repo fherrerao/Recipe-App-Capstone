@@ -21,7 +21,7 @@ RSpec.describe 'Foods new', type: :system do
       fill_in 'Measurement unit', with: 'grams'
       fill_in 'Price', with: 1.2
       click_button 'Submit'
-      expect(page).to have_content 'Food was successfully created.'
+      expect(page).to have_content 'Food has been created successfully'
     end
 
     it 'should have name input field' do
