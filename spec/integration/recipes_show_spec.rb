@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Shopping list', type: :system do
-  describe 'Show food in the shopping list' do
+RSpec.describe 'Recipes show', type: :system do
+  describe 'should display recipes in the page' do
     before :each do
       User.destroy_all
       Food.destroy_all
@@ -48,12 +48,7 @@ RSpec.describe 'Shopping list', type: :system do
 
     it 'should display public switch' do      
       expect(page).to have_content('Public')
-    end
-
-    it 'should redirect to general shopping list page when press a button' do
-      click_button 'Generate Shopping List'
-      expect(page.current_path).to have_content('/general_shopping_list')
-    end
+    end    
 
     it 'should redirect to add ingredients page when press add ingredient button' do
       click_link 'Add ingredient'

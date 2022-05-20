@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Shopping list', type: :system do
-  describe 'Show food in the shopping list' do
+RSpec.describe 'Recipes index', type: :system do
+  describe 'Show recipes' do
     before :each do
       User.destroy_all
       Food.destroy_all
