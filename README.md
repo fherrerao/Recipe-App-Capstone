@@ -5,6 +5,11 @@
 # Recipe App
 ![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./MIT.md)
+![rails version](https://img.shields.io/badge/Rails-7-red)
+![ruby version](https://img.shields.io/badge/Ruby-3.x-orange)
 
 ## Preview
 ![screenshot](./screenshot.png)
@@ -23,7 +28,6 @@
   - [Database Initialization](#database-initialization)
 - [Usage](#usage)
   - [Start Server](#start-server)
-  - [Testing Rails](#testing-rails)
   - [Testing RSpec](#testing-rspec)
 - [How To Contribute?](#how-to-contribute)
 - [Collaborators](#collaborators)
@@ -33,7 +37,7 @@
 <hr>
 
 ## Description
-> Web application where users can create their own recipes, and see the ingredients for other people's recipes aswell. Must registrate before accessing the content.
+> Web application where users can create their own recipes, and see other people's recipes aswell. Must registrate before accessing the content.
 <hr>
 
 ## Built With
@@ -46,6 +50,8 @@
 ## Getting Started
 
 We'll need to prepare your computer to handle Ruby on Rails, which might be a hassle, so take a deep breath and cope with me :)
+
+If you have Rails 7 installed, you can skip to the [Setup](#setup) section
 
 ## Clone Repo
 
@@ -65,7 +71,7 @@ cd Recipe-App-Capstone
 
 The following technologies must be installed before hand in your local machine:
 
- - Ruby (ruby --version). Should be 2.2.2 or newer.
+ - Ruby (ruby --version). Should be 3.0.1 or newer.
  - SQLite3 (sqlite3 --version)
  - Node.js (node --version)
  - Yarn (yarn --version)  
@@ -121,15 +127,6 @@ rails server
 Which you can visit by going to http://localhost:3000 in your browser.
 <hr>
 
-
-## Testing Rails
-The default folder for tests in rails is [/test](/test/).
-
-In order to run the tests located in the test folder run:
-~~~ bash
-rails test
-~~~
-
 ## Testing RSpec
 RSpec tests belong in another folder, which is [/spec](/spec/), all thanks to the ruby **magic** called `naming conventions`.
 Anyway, to run tests located in the spec folder run:
@@ -160,7 +157,7 @@ git merge <branchname>
 Continue by solving any merge conflicts that may arise, test the functionality of the app once more, and you're changes are ready to be pushed with `git push origin <branchname>`
 <hr>
 
-# And that's pretty much it for the instructions!
+# That's all folks!
 
 ## Collaborators
 👤 **Eduardo**
@@ -182,7 +179,6 @@ Platform | Badge |
 
 <hr>
  
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
