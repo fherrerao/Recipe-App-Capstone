@@ -13,7 +13,7 @@ RSpec.describe 'Recipe' do
     @food = Food.new(name: 'Rice', measurement_unit: 'grams', price: 1.2, user: @user)
     @food.save
     @recipe = Recipe.create!(name: 'Gallo Pinto', preparation_time: 4.5, cooking_time: 8,
-      description: 'Traditional costarrican dish', public: true, user: @user)
+                             description: 'Traditional costarrican dish', public: true, user: @user)
     @recipe.save
   end
 
@@ -62,8 +62,7 @@ RSpec.describe 'Recipe' do
   end
 
   it 'description should accept maximunm 250 characters' do
-    @recipe.description = 'a'*251
+    @recipe.description = 'a' * 251
     expect(@recipe).to_not be_valid
   end
-
 end

@@ -6,7 +6,7 @@ RSpec.describe 'Recipes show', type: :system do
       User.destroy_all
       Food.destroy_all
       Recipe.destroy_all
-      
+
       @user = User.new(name: 'Billy', email: 'first@email.com', password: '123456',
                        password_confirmation: '123456')
       @user.skip_confirmation!
@@ -30,25 +30,25 @@ RSpec.describe 'Recipes show', type: :system do
       expect(page).to have_content('Recipes Show')
     end
 
-    it 'should display the name of the recipe food' do      
+    it 'should display the name of the recipe food' do
       expect(page).to have_content('Gallo Pinto')
     end
 
-    it 'should display the preparation time of the recipe food' do      
+    it 'should display the preparation time of the recipe food' do
       expect(page).to have_content('Preparation Time: 4.5 minutes')
     end
 
-    it 'should display the cooking time of the recipe food' do      
+    it 'should display the cooking time of the recipe food' do
       expect(page).to have_content('Cooking Time: 8.0 minutes')
     end
 
-    it 'should display Add ingredient button' do      
+    it 'should display Add ingredient button' do
       expect(page).to have_link('Add ingredient')
     end
 
-    it 'should display public switch' do      
+    it 'should display public switch' do
       expect(page).to have_content('Public')
-    end    
+    end
 
     it 'should redirect to add ingredients page when press add ingredient button' do
       click_link 'Add ingredient'

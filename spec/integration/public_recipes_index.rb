@@ -5,7 +5,7 @@ RSpec.describe 'Food index page', type: :system do
     User.destroy_all
     Food.destroy_all
     Recipe.destroy_all
-    
+
     @user = User.new(name: 'Billy', email: 'first@email.com', password: '123456',
                      password_confirmation: '123456')
     @user.skip_confirmation!
@@ -19,7 +19,7 @@ RSpec.describe 'Food index page', type: :system do
     click_button 'Log in'
     @recipe = Recipe.create!(name: 'Gallo Pinto', preparation_time: 4.5, cooking_time: 8,
                              description: 'Traditional costarrican dish', public: true, user: @user)
-    @recipe.save    
+    @recipe.save
   end
 
   describe 'Visiting the food index page' do
