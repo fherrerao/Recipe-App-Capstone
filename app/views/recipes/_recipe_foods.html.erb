@@ -1,0 +1,21 @@
+<div id="<%= dom_id recipe%>" >
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Value</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% if recipe.recipe_foods.any? %>
+        <% recipe.recipe_foods.each do |recipe_food| %>
+          <%= render partial: "food_row", locals: {:food => recipe_food.food, :recipe_food => recipe_food} %> 
+        <% end %>
+      <% else %>
+        <h4>No foods have been added yet to this recipe.</h4>
+      <% end %>
+      </tbody>             
+    </table>
+  </div>

@@ -1,0 +1,22 @@
+<div>
+  <h1 class="text-center">Foods</h1>
+  <hr>
+  <div class="d-flex justify-content-end">
+    <%= link_to "New food", new_food_path, class: 'btn btn-outline-primary'%>
+  </div>
+  <div id="foods">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Food</th>
+          <th scope="col">Measurement unit</th>
+          <th scope="col">Unit price</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>      
+        <% @foods.each do |food| %>
+          <%= render food %>  
+        <% end %>      
+    </table>
+  </div>
+</div>

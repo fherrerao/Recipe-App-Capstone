@@ -1,0 +1,15 @@
+<tbody>
+  <tr id="<%= dom_id food%>">
+      <th scope="row"><%= food.name%></th>
+      <td><%= food.measurement_unit%></td>
+      <td>$<%= food.price%></td>
+      <td>
+        <% if can? :destroy, food %>
+        <%= button_to "Delete food", food_path(food.id),
+          class:"btn btn-outline-danger float-right", method: :delete %>
+          <% else%>
+          <button class="btn disabled">No action</button>
+        <% end %>
+      </td>    
+  </tr>
+</tbody>

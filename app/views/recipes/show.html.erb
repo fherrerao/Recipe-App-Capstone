@@ -1,0 +1,44 @@
+<div class="page-title d-flex align-items-center">
+  <h1>Recipes Show</h1>
+</div>
+<hr>
+
+<div class="recipe-details position-relative">
+  <h2><%= @recipe.name %></h2>
+  <h4>Preparation Time: <%= @recipe.preparation_time %> minutes</h4>
+  <h4>Cooking Time: <%= @recipe.cooking_time %> minutes</h4>
+  <h4>Steps: </h4>
+  <% @recipe.steps.each do |step| %>
+    <p><%= step %></p>
+  <% end %>
+  <%= form_with model: @recipe, url: recipe_path, method: :put, scope: @recipe, 
+  html: { class: 'recipe-form-details position-absolute top-0 end-0' } do |f| %>
+    <div class="field form-switch ps-0">
+      <%= f.label "Public:", for: 'public-switch-check' %>
+      <%= f.check_box :public, class: 'form-check-input ms-2', id: 'public-switch-check' %>
+    </div>
+    <% if can? :manage, @recipe %>
+      <%= f.submit "Set this public state" %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="action-buttons w-100 d-flex justify-content-between">
+  
+  <%= form_with url: general_shopping_list_path(current_user.id, :recipe => @recipe.id), method: :put do |f| %>
+    <%= f.submit "Generate Shopping List", class: 'btn btn-primary' %>
+  <% end %>
+  <% if can? :manage, @recipe %>
+    <%= link_to "Add ingredient",  new_recipe_recipe_food_path(@recipe), 
+      class: 'btn btn-secondary' %>
+  <% end %>
+
+</div>
+<hr>
+
+<%= render "recipe_foods", recipe: @recipe %>
+
+<div>
+  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+  <%= link_to "Back to recipes", recipes_path %>
+</div>

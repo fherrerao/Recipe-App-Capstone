@@ -1,0 +1,53 @@
+<h1>Editing recipe</h1>
+
+<%= form_with model: @recipe, url: recipe_path, method: :put, scope: @recipe, html: { class: 'recipe-form-new' } do |f| %>
+  <% if @recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being updated:</h2>
+
+      <ul>
+        <% @recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, placeholder: 'Enter name...' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :preparation_time %> <em>(in minutes)</em><br />
+    <%= f.number_field :preparation_time, step: '0.1' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cooking_time %> <em>(in minutes)</em><br />
+    <%= f.number_field :cooking_time, step: '0.1' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, placeholder: 'Enter a description...', class: 'w-75 min-vw-50', style: 'height: 80px' %>
+  </div>
+  <br>
+  
+  <div class="field form-switch ps-0">
+    <%= f.label :public, for: 'publicSwitchCheck' %>:
+    <%= f.check_box :public, class: 'form-check-input ms-0', id: 'publicSwitchCheck' %>
+  </div>
+  
+</label>
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Update Recipe" %>
+  </div>
+<% end %>
+<br>
+
+<div>
+  <%= link_to "Show this recipe", @recipe %> |
+  <%= link_to "Back to recipes", recipes_path %>
+</div>

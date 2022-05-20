@@ -1,0 +1,18 @@
+<h2>Food Details</h2>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Measurement unit</th>
+        <th scope="col">Unit price</th>
+        <th scope="col">Actions</th>
+      <tr>
+    </thead>   
+    <%= render "food", food: @food %>
+  </table>
+</div>
+
+<div>  
+  <%= link_to "Back to foods", foods_path %>  
+</div>

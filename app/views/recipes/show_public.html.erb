@@ -1,0 +1,11 @@
+<div class="page-title d-flex align-items-center">
+  <h1><%= @page_title %></h1>
+  <%= link_to "Create Recipe", new_recipe_path, class: 'btn btn-outline-primary ms-4' %>
+</div>
+<hr>
+
+<div id="recipes-list d-flex flex-column">
+  <% @recipes.each do |recipe| %>
+    <%= render 'public_recipe', recipe: recipe %>
+  <% end %>
+</div>

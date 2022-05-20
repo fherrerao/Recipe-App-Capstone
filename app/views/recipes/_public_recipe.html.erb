@@ -1,0 +1,12 @@
+<%= link_to recipe, {:style => 'text-decoration: none; color: black'} do%>
+  <div class="card flex-row mb-2" style='height: 120px' id="<%= dom_id recipe %>">
+    <div class="card-body w-50 d-flex flex-column justify-content-center">
+      <h3 class="card-title m-2"><%= recipe.name %></h3>
+      <h4 class="m-2">By: <%= recipe.user.name %></h4>
+    </div>
+    <div class="card-body w-50 d-flex flex-column">
+      <h5>Total food items: <%= recipe.foods.count %></h5>
+      <h5>Total price: $<%= recipe.foods.sum(:price) %></h5>
+    </div>
+  </div>
+<% end %>

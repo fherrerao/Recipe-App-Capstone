@@ -1,0 +1,29 @@
+<div class="container">
+<h1 class="text-center">Shopping List</h1>
+  <hr>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Food</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @ingredients.each do |shop|%>
+          <tr>
+            <td><%= Food.find(shop.food_id).name%></td>                
+            <% quantity = shop.quantity%>
+            <% price = Food.find(shop.food_id).price %>
+            <% total = quantity*price%>
+            <th scope="row"><%= shop.quantity%></th>
+            <td>$<%= total %></td>                
+          </tr>
+        <%end%>
+        <div class="d-flex justify-content-around my-5">
+          <span class="lead">Amount of food items to buy: <%= @ingredients.length%></span>
+          <span class="lead">Total value of food needed: $<%= @total_value%> </span>
+        </div>
+    </tbody>     
+  </table>    
+</div>

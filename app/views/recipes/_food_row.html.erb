@@ -1,0 +1,15 @@
+<tr id="<%= dom_id recipe_food%>">
+    <th scope="row" class='align-middle'><%= food.name%></th>
+    <td class='align-middle'><%= recipe_food.quantity%></td>
+    <td class='align-middle'>$<%= food.price%></td>
+    <td class='d-flex align-middle'>
+      <% if can? :manage, @recipe %>
+        <%= link_to 'Edit ingredient', edit_recipe_recipe_food_path(recipe_food.recipe_id, food.id),
+        class:"btn btn-warning me-2" %>
+        <%= button_to "Remove food", recipe_recipe_food_path(recipe_food.recipe_id, recipe_food.id),
+          class:"btn btn-danger", method: :delete %>
+        <% else%>
+        <button class="btn disabled">No action</button>
+      <% end %>
+    </td>    
+</tr>
