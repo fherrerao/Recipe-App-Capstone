@@ -4,6 +4,17 @@
 
 <div class="recipe-food-update-forms container-fluid d-flex">
   <%= form_with model: @recipe_food, url: recipe_recipe_food_path(@recipe, @recipe_food), method: :put, scope: @recipe_food, html: { class: 'recipe-food-form-edit' } do |form| %>
+    <% if @recipe_food.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this recipe food from being saved:</h2>
+
+        <ul>
+          <% @recipe_food.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %> 
     <table class="table table-striped">
       <thead>
         <tr>
@@ -27,6 +38,17 @@
     </div>
   <% end %>
   <%= form_with model: @food, url: recipe_food_update_path(@food, :recipe => @recipe), method: :put, scope: @food, html: { class: 'food-form-edit' } do |form| %>
+    <% if @food.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@food.errors.count, "error") %> prohibited this recipe food from being updated:</h2>
+
+        <ul>
+          <% @food.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <table class="table table-striped">
       <thead>
         <tr>

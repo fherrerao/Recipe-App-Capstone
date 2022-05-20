@@ -11,7 +11,7 @@ class RecipeFoodsController < ApplicationController
     respond_to do |format|
       if @recipe_food.update(recipe_food_params)
         flash[:success] = 'Recipe food has been updated successfully'
-        format.html { redirect_to recipe_url(@recipe), notice: 'Food was successfully updated.' }
+        format.html { redirect_to recipe_url(@recipe) }
       else
         flash[:error] = 'Error: Recipe food could not be updated'
         format.html { render :edit, status: :unprocessable_entity }
@@ -26,10 +26,10 @@ class RecipeFoodsController < ApplicationController
     respond_to do |format|
       if @recipe_food.save
         flash[:success] = 'Ingredient saved succesfully'
-        format.html { redirect_to recipe_url(@recipe), notice: 'Ingredient was successfully added.' }
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :created, location: @recipe }
       else
-        flash[:error] = 'Error: Recipe could not be saved'
+        flash[:error] = 'Error: Ingredient could not be saved'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end

@@ -30,7 +30,7 @@ RSpec.describe 'Food', type: :system do
 
     it 'should delete a food' do
       click_button 'Delete food'
-      expect(page).to have_content 'Food was successfully destroyed.'
+      expect(page).to have_content 'Food has been destroyed successfully'
     end
 
     it "should display the foods's name" do

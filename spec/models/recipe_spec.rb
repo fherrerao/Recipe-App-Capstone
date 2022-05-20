@@ -61,8 +61,8 @@ RSpec.describe 'Recipe' do
     expect(@recipe).to be_valid
   end
 
-  it 'description should accept maximunm 250 characters' do
-    @recipe.description = 'a' * 251
+  it 'description should accept maximunm 1000 characters' do
+    @recipe.description = 'a' * 1001
     expect(@recipe).to_not be_valid
   end
 end

@@ -1,7 +1,8 @@
 class RecipesController < ApplicationController
   include RecipesHelper
   load_and_authorize_resource
-  before_action :set_recipe, only: %i[show edit edit_two update destroy]
+  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :set_recipe_two, only: %i[edit_two]
   before_action :set_other_recipe, only: :update_two
 
   def index
@@ -13,7 +14,7 @@ class RecipesController < ApplicationController
 
   def show_public
     @page_title = 'Public Recipes Index'
-    @recipes = Recipe.all.where(public: true).order('created_at DESC')
+    @recipes = Recipe.includes(:user).all.where(public: true).order('created_at DESC')
   end
 
   def new
@@ -34,9 +35,11 @@ class RecipesController < ApplicationController
         @recipe_food.recipe = @recipe
         @recipe_food.food = @food
         @recipe_food.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Food was successfully added to recipe.' }
+        flash[:success] = 'Food was successfully added to recipe.'
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :created, location: @food }
       else
+        flash[:error] = 'Error: Food could not be added to recipe.'
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @food.errors, status: :unprocessable_entity }
       end
@@ -50,7 +53,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         flash[:success] = 'Recipe saved succesfully'
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :created, location: @recipe }
       else
         flash[:error] = 'Error: Recipe could not be saved'
@@ -63,9 +66,11 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe\'s public state was successfully updated." }
+        flash[:success] = 'Recipe has been updated successfully'
+        format.html { redirect_to recipe_url(@recipe) }
         format.json { render :show, status: :ok, location: @recipe }
       else
+        flash[:error] = 'Error: Recipe could not be updated'
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
@@ -82,6 +87,10 @@ class RecipesController < ApplicationController
   private
 
   def set_recipe
+    @recipe = Recipe.includes(:recipe_foods, recipe_foods: :food).find(params[:id])
+  end
+
+  def set_recipe_two
     @recipe = Recipe.find(params[:id])
   end
 

@@ -5,9 +5,9 @@
     <td class='d-flex align-middle'>
       <% if can? :manage, @recipe %>
         <%= link_to 'Edit ingredient', edit_recipe_recipe_food_path(recipe_food.recipe_id, food.id),
-        class:"btn btn-outline-warning me-2" %>
+        class:"btn btn-warning me-2" %>
         <%= button_to "Remove food", recipe_recipe_food_path(recipe_food.recipe_id, recipe_food.id),
-          class:"btn btn-outline-danger", method: :delete %>
+          class:"btn btn-danger", method: :delete %>
         <% else%>
         <button class="btn disabled">No action</button>
       <% end %>

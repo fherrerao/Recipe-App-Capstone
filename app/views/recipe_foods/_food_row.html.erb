@@ -1,5 +1,16 @@
 <%= form_with model: @recipe_food, url: recipe_recipe_foods_path(@recipe, :food_id => food.id), method: :post, 
   scope: @recipe_food, html: { class: 'recipe-food-form-edit' } do |f| %>
+  <% if @recipe_food.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this recipe food from being saved:</h2>
+
+      <ul>
+        <% @recipe_food.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
   <tr class="row px-3 mx-0">
     <td class="col-4 mb-1"><%= food.name %></td>
     <td class="col-2 mb-1"><%= food.measurement_unit %></td>

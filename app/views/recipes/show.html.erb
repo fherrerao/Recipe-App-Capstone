@@ -8,7 +8,9 @@
   <h4>Preparation Time: <%= @recipe.preparation_time %> minutes</h4>
   <h4>Cooking Time: <%= @recipe.cooking_time %> minutes</h4>
   <h4>Steps: </h4>
-  <p><%= @recipe.description %></p>
+  <% @recipe.steps.each do |step| %>
+    <p><%= step %></p>
+  <% end %>
   <%= form_with model: @recipe, url: recipe_path, method: :put, scope: @recipe, 
   html: { class: 'recipe-form-details position-absolute top-0 end-0' } do |f| %>
     <div class="field form-switch ps-0">
@@ -24,9 +26,8 @@
 <div class="action-buttons w-100 d-flex justify-content-between">
   
   <%= form_with url: general_shopping_list_path(current_user.id, :recipe => @recipe.id), method: :put do |f| %>
-    <%= f.submit "Generate Shopping List" %>
+    <%= f.submit "Generate Shopping List", class: 'btn btn-primary' %>
   <% end %>
-                             
   <% if can? :manage, @recipe %>
     <%= link_to "Add ingredient",  new_recipe_recipe_food_path(@recipe), 
       class: 'btn btn-secondary' %>

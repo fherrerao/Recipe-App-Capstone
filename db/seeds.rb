@@ -26,8 +26,12 @@ second_recipe = Recipe.create!(name: 'Empanadas', preparation_time: 12, cooking_
 
 third_recipe = Recipe.create!(name: 'Spaghetti al Pomodoro', preparation_time: 7, cooking_time: 14, description: 'Traditional roman dish', public: true, user: second_user)
 fourth_recipe = Recipe.create!(name: 'Spaghetti al Pesto', preparation_time: 9, cooking_time: 17, description: 'Traditional italian dish', public: false, user: second_user)
+fifth_recipe = Recipe.create!(name: 'Spaghetti and Tomato', preparation_time: 8, cooking_time: 22, 
+  description: "1. Heat 2 tsp oil in a medium saucepan over a medium heat and fry the breadcrumbs for 3-4 mins, stirring often, until just turning golden brown. Add half the garlic and a pinch of thyme, then cook for another 1 min until toasted and fragrant. Tip into a bowl and set aside.\n2. Add the remaining 2 tsp oil to the pan and cook the onion over a medium heat for 5-6 mins until softened and slightly browning. Add the remaining garlic and ½ tsp thyme, cook for 1 min, then add the pinch of thyme, the tomatoes and vinegar; season. Stir well and bring to a simmer.\n3. Break the spaghetti in half and add to the pan with 500ml boiling water. Cook over a medium heat for 10-12 mins until the pasta is al dente, adding a splash more water if it starts to stick. Divide between 2 bowls and scatter over the garlicky breadcrumbs to serve.", 
+  public: true, user: first_user)
 
 first_recipe_food = RecipeFood.create!(quantity: 2.1, recipe: first_recipe, food: first_food)
 second_recipe_food = RecipeFood.create!(quantity: 5.1, recipe: first_recipe, food: second_food)
-
 third_recipe_food = RecipeFood.create!(quantity: 5.1, recipe: second_recipe, food: second_food)
+fourth_recipe_food = RecipeFood.create!(quantity: 8, recipe: fifth_recipe, food: fourth_food)
+fifth_recipe_food = RecipeFood.create!(quantity: 8, recipe: fifth_recipe, food: fifth_food)
