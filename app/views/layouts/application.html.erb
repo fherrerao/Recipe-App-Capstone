@@ -11,50 +11,13 @@
   </head>
 
   <body class="container position-relative">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand">RecipeApp</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav container-fluid">
-          <li class="nav-item">
-            <%= link_to "Foods", foods_path, :class => current_class?(foods_path) %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Recipes", recipes_path, :class => current_class?(recipes_path) %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Public Recipes", public_recipes_path, :class => current_class?(public_recipes_path) %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Shopping List", general_shopping_list_index_path, :class => current_class?(general_shopping_list_index_path) %>
-          </li>
-          <% if signed_in? %>
-            <li class="nav-item ms-lg-auto">
-              <%= link_to "Edit User", edit_user_registration_path, class: 'nav-link' %>              
-            </li>
-            <li class="nav-item d-flex align-items-center">
-              <%= button_to "Log Out", destroy_user_session_path, class: 'bg-transparent nav-link px-1 py-0 ', method: :delete  %>              
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <%= render partial: 'layouts/header'%>
   <br>
   <br>
   <br>
   <% flash.each do |name, msg| -%>
     <%= content_tag :div, msg, class: "alert alert-#{name}" %>
   <% end -%>
-  <% if user_signed_in? %>
-    <div class="position-absolute top-10 end-0">
-      Logged in as <strong><%= current_user.email %></strong>
-    </div>
-  <% end %>
   <%= yield %>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
