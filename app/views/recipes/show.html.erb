@@ -3,23 +3,38 @@
 </div>
 <hr>
 
-<div class="recipe-details position-relative">
-  <h2><%= @recipe.name %></h2>
-  <h4>Preparation Time: <%= @recipe.preparation_time %> minutes</h4>
-  <h4>Cooking Time: <%= @recipe.cooking_time %> minutes</h4>
-  <h4>Steps: </h4>
+<div class="recipe-details position-relative">  
+
+  <table class="table table-dark my-5">
+  <thead>
+    <tr>
+      <th class="bg-white" style='color: black; text-align: end' scope="col"><%= @recipe.name.upcase%></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Preparation time:</th>
+      <td><%= @recipe.preparation_time %> minutes</td>     
+    </tr>
+    <tr>
+      <th scope="row">Cooking Time:</th>
+      <td><%= @recipe.cooking_time %> minutes</td>   
+    </tr>   
+  </tbody>
+</table>
+
+<h4>Steps: </h4>
   <% @recipe.steps.each do |step| %>
     <p><%= step %></p>
   <% end %>
   <%= form_with model: @recipe, url: recipe_path, method: :put, scope: @recipe, 
   html: { class: 'recipe-form-details position-absolute top-0 end-0' } do |f| %>
-    <div class="field form-switch ps-0">
-      <%= f.label "Public:", for: 'public-switch-check' %>
+    <div class="field form-switch ps-0">      
       <%= f.check_box :public, class: 'form-check-input ms-2', id: 'public-switch-check' %>
-    </div>
-    <% if can? :manage, @recipe %>
-      <%= f.submit "Set this public state" %>
+      <% if can? :manage, @recipe %>
+        <%= f.submit "Set public", class: 'btn btn-outline-dark' %>
       <% end %>
+    </div>
   <% end %>
 </div>
 
